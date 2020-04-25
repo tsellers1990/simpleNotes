@@ -17,7 +17,7 @@ class Store { /// this is how to export them
         return this.read()
     } 
     addNote() {
-
+        return this.read()
     }
     removeNote() {
 
