@@ -1,3 +1,20 @@
+const path = require('path');
+const store = require("../db/store");
+const express = require("express");
+
+module.exports = function(app) {
 //get       /api/notes
+
+app.get("/notes", function(req, res){
+    console.log("backendNotes")
+    store.getNotes().then(notes => res.json(notes)).catch(err => res.status(500).json(err)) 
+}) 
+
 //post      /api/notes
+
+app.post("/notes", function(req, res){
+    store.read(res)
+})
+
 //delete    /api/notes
+}

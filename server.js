@@ -1,25 +1,18 @@
 var express = require("express");
 var path = require("path");
+const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
 
-var app = express();
+const app = express();
 var PORT = process.env.PORT || 3000;
 
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended:true }));
 app.use(express.json());
 
-//
+app.use(express.static('public')) //this only allows the users to see what's in the public folder  (hides backend) 
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
-
-
-app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"))
-    console.log("home")
-})
-
-app.get("/notes", function (req, res) {
-    res.sendFile(path.join(__dirname, "./public/notes.html"))
-    console.log("notes")
-})  
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
