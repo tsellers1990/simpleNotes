@@ -13,7 +13,9 @@ app.get("/api/notes", function(req, res){
 //post      /api/notes
 
 app.post("/api/notes", function(req, res){
-    store.addNote().then(notes => {res.json(JSON.parse(notes))}).catch(err => res.status(500).json(err)) 
+    var newNote = req.body;
+    store.addNote(newNote).then(notes => {res.json(JSON.parse(notes))}).catch(err => res.status(500).json(err)) 
+
 })
 
 //delete    /api/notes
